@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Hello React</title>
+ <meta charset="utf-8">
+ </head>
+ <body>
+ <div id="app">
+ <!-- здесь будет отображено мое приложение -->
+ </div>
+   
+
+ <script src="js/react.js"></script>
+ <script src="js/react-dom.js"></script>
+ <script>
+
+  var TextAreaCounter = React.createClass({
+     propTypes: {
+      text: React.PropTypes.string,
+     },
+    
+    getInitialState: function() {
+     return {
+       text: this.props.text,
+      };
+    },
+    
+  _textChange: function(ev) {
+   this.setState({
+    text: ev.target.value,
+   });
+  },
+    
+   render: function() {
+     
+    return React.DOM.div(
+      {
+        style: {
+          background: "#000",
+          padding: 20
+        },  
+      },
+    React.DOM.textarea({
+      defaultValue: this.state.text,
+      onChange: this._textChange,
+   }),                     
+   React.DOM.h3(
+      {
+        style: {
+          color: "#fff",
+          padding: 20
+        },  
+      }, 
+     
+      this.state.text.length)
+   );
+     
+   }
+    
+
+                                          
+  });
+
+  ReactDOM.render(
+   React.createElement(TextAreaCounter, {
+   text: "Bob",
+   }),
+   document.getElementById("app")
+  );
+
+
+
+
+
+ </script>
+ </body>
